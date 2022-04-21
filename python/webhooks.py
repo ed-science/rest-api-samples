@@ -278,7 +278,7 @@ def main():
     ##### STEP 2. create a new webhook
     webhook_endpoint = 'https://webhook.site/ef2be372-63ae-4f6b-8613-dccec992117f'
     event = workbook_events[0] # can use any of those defined above
-    webhook_name = event + "-webhook-site-automated-test"
+    webhook_name = f"{event}-webhook-site-automated-test"
     created_webhook = create_webhook(server, site_id, auth_token, event, webhook_endpoint, webhook_name)
     webhook_id = created_webhook.get("id")
     print("\n2. Created a webhook {0} with id {1}".format(webhook_name, webhook_id))

@@ -188,7 +188,7 @@ def get_workbooks(server, auth_token, user_id, site_id):
 
     # Tuples to store each workbook information:(workbook_id, workbook_name)
     workbooks = [(workbook.get('id'), workbook.get('name')) for workbook in workbook_tags]
-    if len(workbooks) == 0:
+    if not workbooks:
         error = "No workbooks found on this site"
         raise LookupError(error)
     return workbooks

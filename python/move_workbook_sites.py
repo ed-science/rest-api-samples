@@ -235,7 +235,7 @@ def get_default_project_id(server, auth_token, site_id):
 
     # Look through all projects to find the 'default' one
     for project in projects:
-        if project.get('name') == 'default' or project.get('name') == 'Default':
+        if project.get('name') in ['default', 'Default']:
             return project.get('id')
     error = "Project named 'default' was not found in destination site"
     raise LookupError(error)

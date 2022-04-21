@@ -154,8 +154,7 @@ def query_groups(server, auth_token, site_id, page_size, page_number):
     server_response = requests.get(url, headers={'x-tableau-auth': auth_token})
     _check_status(server_response, 200)
     xml_response = ET.fromstring(_encode_for_display(server_response.text))
-    groups = xml_response.findall('.//t:group', namespaces=XMLNS)
-    return groups
+    return xml_response.findall('.//t:group', namespaces=XMLNS)
 
 def get_users_in_group(server, auth_token, site_id, group_id, page_size, page_number):
     """
@@ -171,8 +170,7 @@ def get_users_in_group(server, auth_token, site_id, group_id, page_size, page_nu
     server_response = requests.get(url, headers={'x-tableau-auth': auth_token})
     #_check_status(server_response, 200)
     xml_response = ET.fromstring(_encode_for_display(server_response.text))
-    users = xml_response.findall('.//t:user', namespaces=XMLNS)
-    return users
+    return xml_response.findall('.//t:user', namespaces=XMLNS)
 
 def get_users_in_group_count(server, auth_token, site_id, group_id):
     """
@@ -220,15 +218,15 @@ def main():
         username = raw_input("\nUser name: ")
 
     # Prompt for password
-    if password == "":
+    if not password:
         password = getpass.getpass("Password: ")
 
     # Prompt for site id
-    if site_id == "":
+    if not site_id:
         site_id = raw_input("\nSite name (hit Return for the default site): ")
 
     # Prompt for group name
-    if group_name == "":
+    if not group_name:
         group_name = raw_input("\nGroup name (hit Return for all groups): ")
 
     # Prompt for page size
